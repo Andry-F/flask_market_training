@@ -2,33 +2,47 @@
 {% block title %}Market Page{% endblock %}
 
 {% block content %}
-<body class="text-center">
-<h2>Market Page</h2>
-<table class="table table-hover table-striped table-dark">
-    <thead>
-    <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Name</th>
-        <th scope="col">Barcode</th>
-        <th scope="col">Price</th>
-        <th scope="col">Options</th>
-    </tr>
-    </thead>
 
-    <tbody>
-    {% for item in items %}
-    <tr>
-        <td>{{ item.id }}</td>
-        <td>{{ item.name }}</td>
-        <td>{{ item.barcode }}</td>
-        <td>{{ item.price }}$</td>
-        <td>
-            <button class="btn btn-outline btn-info">More Info</button>
-            <button class="btn btn-outline btn-success">Purchase this Item</button>
-        </td>
-    </tr>
-    {% endfor %}
-    </tbody>
-</table>
-</body>
+<div class="row" style="margin-top:20px; margin-left:20px">
+    <div class="col-8">
+        <body class="text-center">
+        <h2>Available items on the Market</h2>
+        <table class="table table-hover table-striped table-dark">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Barcode</th>
+                <th scope="col">Price</th>
+                <th scope="col">Options</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for item in items %}
+            {% include 'includes/items_modals.html' %}
+            <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.barcode }}</td>
+                <td>{{ item.price }}$</td>
+                <td>
+                    <button class="btn btn-outline btn-info" data-bs-toggle="modal"
+                            data-bs-target="#Modal-MoreInfo-{{ item.id }}">More Info
+                    </button>
+                    <button class="btn btn-outline btn-success" data-bs-toggle="modal"
+                            data-bs-target="#Modal-More-{{ item.id }}">Purchase this Item
+                    </button>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        </body>
+    </div>
+    <div class=" col-4
+                    ">
+                    <h2>Owned items</h2>
+    </div>
+</div>
 {% endblock %}
