@@ -40,9 +40,28 @@
         </table>
         </body>
     </div>
-    <div class=" col-4
-                    ">
-                    <h2>Owned items</h2>
+    <div class="col-4">
+        <p>Owned items
+            <br>
+        <div class="row">
+            {% for owned_item in owned_items %}
+            {% include 'includes/owned_items_modals.html' %}
+            <div class="col-md-6">
+                <div style="margin-bottom: 5px" class="card text-center bg-dark">
+                    <div class="card-body">
+                        <h5 class="card-title text-white">{{ owned_item.name }}</h5>
+                        <button class="btn btn-outline btn-danger" data-bs-toggle="modal"
+                                data-bs-target="#Modal-SellingConfirm-{{ owned_item.id }}">
+                            Sell this Item
+                        </button>
+                        <p class="card-text text-white"><strong>
+                            This item costs {{ owned_item.price }}$
+                        </strong></p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
     </div>
 </div>
 {% endblock %}
